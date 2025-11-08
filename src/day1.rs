@@ -1,6 +1,13 @@
 use crate::util;
 
-pub fn part1(submit: bool) -> i64 {
+pub fn solve(level: &util::Level) -> i64 {
+    match level {
+        util::Level::One => part1(),
+        util::Level::Two => part2(),
+    }
+}
+
+pub fn part1() -> i64 {
     let input = util::load_input(1);
 
     let answer = input.chars().fold(0, |mut sum, c| {
@@ -12,16 +19,10 @@ pub fn part1(submit: bool) -> i64 {
         sum
     });
 
-    println!("result: {answer}");
-
-    if submit {
-        util::submit(1, util::Level::One, answer);
-    }
-
     answer
 }
 
-pub fn part2(submit: bool) -> i64 {
+pub fn part2() -> i64 {
     let input = util::load_input(1);
 
     let mut answer = 0;
@@ -34,12 +35,6 @@ pub fn part2(submit: bool) -> i64 {
             _ => panic!("illegal character"),
         };
         if sum < 0 {break};
-    }
-
-        println!("result: {answer}");
-
-    if submit {
-        util::submit(1, util::Level::Two, answer);
     }
 
     answer

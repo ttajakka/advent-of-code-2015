@@ -26,3 +26,19 @@ pub mod day22;
 pub mod day23;
 pub mod day24;
 pub mod day25;
+
+pub fn solve(day: u8, level: util::Level, submit: bool) {
+    let answer = match day {
+        1 => day1::solve(&level),
+        2 => day2::solve(&level),
+        _ => todo!()
+    };
+
+    println!("Solved day {day}, level {level} puzzle.");
+    println!("Answer: {answer}");
+
+    if submit {
+        println!("submitting...");
+        util::submit(day, level, answer);
+    }
+}

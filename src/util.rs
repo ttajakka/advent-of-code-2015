@@ -20,6 +20,15 @@ pub enum Level {
     Two
 }
 
+impl std::fmt::Display for Level {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Level::One => f.write_str("1"),
+            Level::Two => f.write_str("2"),
+        }
+    }
+}
+
 pub fn download_input(day: i8) {
     let output_path = format!("input/day{day}.txt");
     let output_path = Path::new(&output_path);
