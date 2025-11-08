@@ -31,6 +31,7 @@ pub fn solve(day: u8, level: util::Level, submit: bool) {
     let answer = match day {
         1 => day1::solve(&level),
         2 => day2::solve(&level),
+        3 => day3::solve(&level),
         _ => todo!()
     };
 

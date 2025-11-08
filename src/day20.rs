@@ -1,10 +1,10 @@
 use crate::util;
 
-pub fn solve(level: util::Level) {
+pub fn solve(level: &util::Level) -> i64 {
     match level {
         util::Level::One => part1(),
         util::Level::Two => part2(),
-    };
+    }
 }
 
 pub fn part1() -> i64 {
