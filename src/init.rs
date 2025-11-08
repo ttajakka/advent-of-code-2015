@@ -5,7 +5,7 @@ use std::{
 
 use tera::{Context, Tera};
 
-pub fn init() {
+pub fn init(first_day: u8, last_day: u8, modify_lib: bool) {
     let tera = match Tera::new("templates/*.rs.tera") {
         Ok(t) => t,
         Err(e) => {
@@ -21,13 +21,15 @@ pub fn init() {
         .unwrap();
     let mut context = Context::new();
 
-    for day in 1..25 {
+    for day in first_day..=last_day {
         context.insert("day", &day);
         let a = tera.render("day.rs.tera", &context).unwrap();
 
         fs::write(format!("src/day{day}.rs"), a).unwrap();
 
-        writeln!(&mut file, "pub mod day{};", day).unwrap();
+        if modify_lib {
+            writeln!(&mut file, "pub mod day{};", day).unwrap();
+        }
     }
 }
 

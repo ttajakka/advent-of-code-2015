@@ -1,3 +1,5 @@
+use core::panic;
+
 use advent_of_code_2015::{solve, init, util};
 use clap::{Parser, Subcommand};
 
@@ -16,7 +18,12 @@ enum Command {
         level: u8,
     },
 
-    Init,
+    Init {
+        first_day: u8,
+        last_day: u8,
+        #[arg(long)]
+        modify_lib: bool
+    }
 }
 
 fn main() {
@@ -31,8 +38,17 @@ fn main() {
             };
             solve(day, level, submit)
         }
-        Command::Init => {
-            init::init();
+        Command::Init { first_day, last_day,modify_lib} => {
+            if first_day < 1 {
+                panic!("first_day must be at least 1");
+            }
+            if last_day > 25 {
+                panic!("last_day must be at most 25");
+            }
+            if first_day > last_day {
+                panic!("last_day must be greater than or equal to first_day")
+            }
+            init::init(first_day, last_day, modify_lib);
         }
     };
 }
