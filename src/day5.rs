@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use crate::util;
 use regex::Regex;
 
@@ -14,7 +16,7 @@ pub fn part1() -> i64 {
     let mut answer = 0;
 
     for line in input.lines() {
-        if is_nice(line) {
+        if is_nice_part1(line) {
             println!("{line}");
             answer += 1;
         }
@@ -24,14 +26,21 @@ pub fn part1() -> i64 {
 }
 
 pub fn part2() -> i64 {
-    let _input = util::load_input(5);
+    let input = util::load_input(5);
 
-    let answer = 0;
+    let mut answer = 0;
+
+    for line in input.lines() {
+        if is_nice_part2(line) {
+            println!("{line}");
+            answer += 1;
+        }
+    }
 
     answer
 }
 
-fn is_nice(line: &str) -> bool {
+fn is_nice_part1(line: &str) -> bool {
     let disallowed = Regex::new(r"ab|cd|pq|xy").unwrap();
     if disallowed.is_match(line) {
         return false;
@@ -51,5 +60,71 @@ fn is_nice(line: &str) -> bool {
         previous = c;
     }
 
-    return false
+    return false;
+}
+
+fn is_nice_part2(line: &str) -> bool {
+    println!();
+    println!("{line}");
+
+    let mut repeating_pair = false;
+    let mut repeating_char = false;
+    let mut pairs = HashSet::new();
+
+    let mut prev = '0';
+    let mut prevprev = '0';
+    let mut prevprevprev = '0';
+    for (i, c) in line.chars().enumerate() {
+        if prevprev == c {
+            repeating_char = true;
+        }
+
+        if i > 2 {
+            pairs.insert((prevprevprev, prevprev));
+        }
+        if pairs.contains(&(prev, c)) {
+            repeating_pair = true;
+        }
+
+        if repeating_char && repeating_pair {
+            return true;
+        }
+
+        prevprevprev = prevprev;
+        prevprev = prev;
+        prev = c;
+    }
+
+    false
+}
+
+#[cfg(test)]
+mod tests {
+    // Note this useful idiom: importing names from outer (for mod tests) scope.
+    use super::*;
+
+    #[test]
+    fn qjhvhtzxzqqjkmpb_is_nice() {
+        assert_eq!(is_nice_part2("qjhvhtzxzqqjkmpb"), true);
+    }
+
+    #[test]
+    fn xxyxx_is_nice() {
+        assert_eq!(is_nice_part2("xxyxx"), true);
+    }
+
+    #[test]
+    fn uurcxstgmygtbstg_is_naught() {
+        assert_eq!(is_nice_part2("uurcxstgmygtbstg"), false);
+    }
+
+    #[test]
+    fn ieodomkazucvgmuy_is_naught() {
+        assert_eq!(is_nice_part2("ieodomkazucvgmuy"), false);
+    }
+
+    #[test]
+    fn abab_is_nice() {
+        assert_eq!(is_nice_part2("abab"), true);
+    }
 }
