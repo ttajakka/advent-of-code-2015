@@ -32,6 +32,7 @@ pub fn solve(day: u8, level: util::Level, submit: bool) {
         1 => day1::solve(&level),
         2 => day2::solve(&level),
         3 => day3::solve(&level),
+        4 => day4::solve(&level),
         _ => todo!()
     };
 

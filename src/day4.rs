@@ -8,17 +8,36 @@ pub fn solve(level: &util::Level) -> i64 {
 }
 
 pub fn part1() -> i64 {
-    let _input = util::load_input(4);
+    let input = util::load_input(4);
+    let input = input.strip_suffix("\n").unwrap();
 
-    let answer = 0;
+    let mut answer = 0;
+    loop {
+        answer += 1;
+        println!("testing {answer}");
+        let digest = md5::compute(format!("{input}{answer}")).0;
+        if digest[0] == 0 && digest[1] == 0 && (digest[2] >> 4) == 0 {
+            break;
+        }
+    }
 
     answer
 }
 
 pub fn part2() -> i64 {
-    let _input = util::load_input(4);
+    let input = util::load_input(4);
 
-    let answer = 0;
+    let input = input.strip_suffix("\n").unwrap();
+
+    let mut answer = 0;
+    loop {
+        answer += 1;
+        println!("testing {answer}");
+        let digest = md5::compute(format!("{input}{answer}")).0;
+        if digest[0] == 0 && digest[1] == 0 && digest[2] == 0 {
+            break;
+        }
+    }
 
     answer
 }
