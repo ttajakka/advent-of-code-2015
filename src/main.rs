@@ -22,7 +22,7 @@ enum Command {
         first_day: u8,
         last_day: u8,
         #[arg(long)]
-        modify_lib: bool
+        make_lib: bool
     }
 }
 
@@ -38,7 +38,7 @@ fn main() {
             };
             solve(day, level, submit)
         }
-        Command::Init { first_day, last_day,modify_lib} => {
+        Command::Init { first_day, last_day,make_lib} => {
             if first_day < 1 {
                 panic!("first_day must be at least 1");
             }
@@ -48,7 +48,11 @@ fn main() {
             if first_day > last_day {
                 panic!("last_day must be greater than or equal to first_day")
             }
-            init::init(first_day, last_day, modify_lib);
+            init::init(first_day, last_day);
+
+            if make_lib {
+                init::make_lib(last_day);
+            }
         }
     };
 }

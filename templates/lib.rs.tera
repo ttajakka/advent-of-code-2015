@@ -1,0 +1,20 @@
+pub mod init;
+pub mod util;
+{% for day in days %}
+pub mod day{{day}};{% endfor %}
+
+pub fn solve(day: u8, level: util::Level, submit: bool) {
+    let answer = match day {
+{% for day in days %}
+        {{day}} => day{{day}}::solve(&level),{% endfor %}
+        _ => todo!()
+    };
+
+    println!("Solved day {day}, level {level} puzzle.");
+    println!("Answer: {answer}");
+
+    if submit {
+        println!("submitting...");
+        util::submit(day, level, answer);
+    }
+}
