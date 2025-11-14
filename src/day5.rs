@@ -17,7 +17,6 @@ pub fn part1() -> i64 {
 
     for line in input.lines() {
         if is_nice_part1(line) {
-            println!("{line}");
             answer += 1;
         }
     }
@@ -32,7 +31,6 @@ pub fn part2() -> i64 {
 
     for line in input.lines() {
         if is_nice_part2(line) {
-            println!("{line}");
             answer += 1;
         }
     }
@@ -64,9 +62,6 @@ fn is_nice_part1(line: &str) -> bool {
 }
 
 fn is_nice_part2(line: &str) -> bool {
-    println!();
-    println!("{line}");
-
     let mut repeating_pair = false;
     let mut repeating_char = false;
     let mut pairs = HashSet::new();

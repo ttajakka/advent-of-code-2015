@@ -14,7 +14,6 @@ pub fn part1() -> i64 {
     let mut answer = 0;
     loop {
         answer += 1;
-        println!("testing {answer}");
         let digest = md5::compute(format!("{input}{answer}")).0;
         if digest[0] == 0 && digest[1] == 0 && (digest[2] >> 4) == 0 {
             break;
@@ -32,7 +31,6 @@ pub fn part2() -> i64 {
     let mut answer = 0;
     loop {
         answer += 1;
-        println!("testing {answer}");
         let digest = md5::compute(format!("{input}{answer}")).0;
         if digest[0] == 0 && digest[1] == 0 && digest[2] == 0 {
             break;
