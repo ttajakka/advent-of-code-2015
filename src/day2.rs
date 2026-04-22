@@ -2,14 +2,14 @@ use crate::util;
 
 use regex::Regex;
 
-pub fn solve(level: &util::Level) -> i64 {
+pub fn solve(level: &util::Level) -> String {
     match level {
         util::Level::One => part1(),
         util::Level::Two => part2(),
     }
 }
 
-pub fn part1() -> i64 {
+pub fn part1() -> String {
     let input = util::load_input(2);
 
     let parser = PresentParser::new();
@@ -19,12 +19,12 @@ pub fn part1() -> i64 {
         .map(|l| parser.parse(&l))
         .fold(0, |sum, p| sum + p.wrapping_required());
 
-    let answer = answer.into();
+    let answer = answer.to_string();
 
     answer
 }
 
-pub fn part2() -> i64 {
+pub fn part2() -> String {
     let input = util::load_input(2);
 
     let parser = PresentParser::new();
@@ -34,7 +34,7 @@ pub fn part2() -> i64 {
         .map(|l| parser.parse(&l))
         .fold(0, |sum, p| sum + p.bow_required());
 
-    let answer = answer.into();
+    let answer = answer.to_string();
 
     answer
 }

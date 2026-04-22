@@ -5,14 +5,14 @@ use regex::Regex;
 
 use crate::util;
 
-pub fn solve(level: &util::Level) -> i64 {
+pub fn solve(level: &util::Level) -> String {
     match level {
         util::Level::One => part1(),
         util::Level::Two => part2(),
     }
 }
 
-pub fn part1() -> i64 {
+pub fn part1() -> String {
     let (locations, distances) = prepare_distances();
 
     let mut answer= i64::MAX;
@@ -28,10 +28,10 @@ pub fn part1() -> i64 {
         }
     }
 
-    answer
+    answer.to_string()
 }
 
-pub fn part2() -> i64 {
+pub fn part2() -> String {
     let (locations, distances) = prepare_distances();
 
     let mut answer= i64::MIN;
@@ -47,7 +47,7 @@ pub fn part2() -> i64 {
         }
     }
 
-    answer
+    answer.to_string()
 }
 
 fn prepare_distances() -> (Vec<String>, HashMap<(String, String), i64>) {

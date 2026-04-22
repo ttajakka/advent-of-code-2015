@@ -1,13 +1,13 @@
 use crate::util;
 
-pub fn solve(level: &util::Level) -> i64 {
+pub fn solve(level: &util::Level) -> String {
     match level {
         util::Level::One => part1(),
         util::Level::Two => part2(),
     }
 }
 
-pub fn part1() -> i64 {
+pub fn part1() -> String {
     let input = util::load_input(4);
     let input = input.strip_suffix("\n").unwrap();
 
@@ -20,10 +20,12 @@ pub fn part1() -> i64 {
         }
     }
 
+    let answer = answer.to_string();
+
     answer
 }
 
-pub fn part2() -> i64 {
+pub fn part2() -> String {
     let input = util::load_input(4);
 
     let input = input.strip_suffix("\n").unwrap();
@@ -37,5 +39,7 @@ pub fn part2() -> i64 {
         }
     }
 
+    let answer = answer.to_string();
+    
     answer
 }

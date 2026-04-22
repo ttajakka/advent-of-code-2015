@@ -1,13 +1,13 @@
 use crate::util;
 
-pub fn solve(level: &util::Level) -> i64 {
+pub fn solve(level: &util::Level) -> String {
     match level {
         util::Level::One => part1(),
         util::Level::Two => part2(),
     }
 }
 
-pub fn part1() -> i64 {
+pub fn part1() -> String {
     let input = util::load_input(10);
 
     let mut input = input
@@ -24,11 +24,11 @@ pub fn part1() -> i64 {
 
     let answer = input.len() as i64;
 
-    answer
+    answer.to_string()
 }
 
-pub fn part2() -> i64 {
-     let input = util::load_input(10);
+pub fn part2() -> String {
+    let input = util::load_input(10);
 
     let mut input = input
         .lines()
@@ -44,7 +44,7 @@ pub fn part2() -> i64 {
 
     let answer = input.len() as i64;
 
-    answer
+    answer.to_string()
 }
 
 fn look_and_say(input: Vec<u32>) -> Vec<u32> {

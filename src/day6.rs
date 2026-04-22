@@ -2,7 +2,7 @@ use regex::Regex;
 
 use crate::util;
 
-pub fn solve(level: &util::Level) -> i64 {
+pub fn solve(level: &util::Level) -> String {
     match level {
         util::Level::One => part1(),
         util::Level::Two => part2(),
@@ -52,7 +52,7 @@ impl Operation {
     }
 }
 
-pub fn part1() -> i64 {
+pub fn part1() -> String {
     let input = util::load_input(6);
 
     let mut grid = vec![vec![false; 1000]; 1000];
@@ -80,10 +80,12 @@ pub fn part1() -> i64 {
             .sum::<i64>()
     });
 
+    let answer = answer.to_string();
+
     answer
 }
 
-pub fn part2() -> i64 {
+pub fn part2() -> String {
     let input = util::load_input(6);
 
     let mut grid = vec![vec![0_i64; 1000]; 1000];
@@ -94,17 +96,19 @@ pub fn part2() -> i64 {
             for j in rect.top..=rect.bottom {
                 grid[i][j] += match op_type {
                     OpType::TurnOn => 1,
-                    OpType::TurnOff => {match grid[i][j] > 0 {
+                    OpType::TurnOff => match grid[i][j] > 0 {
                         true => -1,
                         false => 0,
-                    }},
+                    },
                     OpType::Toggle => 2,
                 }
             }
         }
     }
 
-    let answer = grid.iter().map(|row| row.iter().sum::<i64>()).sum();
+    let answer: i64 = grid.iter().map(|row| row.iter().sum::<i64>()).sum();
+
+    let answer = answer.to_string();
 
     answer
 }

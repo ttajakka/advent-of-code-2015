@@ -1,13 +1,13 @@
 use crate::util;
 
-pub fn solve(level: &util::Level) -> i64 {
+pub fn solve(level: &util::Level) -> String {
     match level {
         util::Level::One => part1(),
         util::Level::Two => part2(),
     }
 }
 
-pub fn part1() -> i64 {
+pub fn part1() -> String {
     let input = util::load_input(8);
 
     let mut answer = 0;
@@ -17,10 +17,10 @@ pub fn part1() -> i64 {
         answer -= count_escaped(line);
     }
 
-    answer
+    answer.to_string()
 }
 
-pub fn part2() -> i64 {
+pub fn part2() -> String {
     let input = util::load_input(8);
 
     let mut answer = 0;
@@ -31,7 +31,7 @@ pub fn part2() -> i64 {
         answer -= line.len() as i64;
     }
 
-    answer
+    answer.to_string()
 }
 
 fn count_escaped(line: &str) -> i64 {

@@ -2,14 +2,14 @@ use std::collections::HashSet;
 
 use crate::util;
 
-pub fn solve(level: &util::Level) -> i64 {
+pub fn solve(level: &util::Level) -> String {
     match level {
         util::Level::One => part1(),
         util::Level::Two => part2(),
     }
 }
 
-pub fn part1() -> i64 {
+pub fn part1() -> String {
     let input = util::load_input(3);
 
     let mut visited = HashSet::new();
@@ -27,12 +27,12 @@ pub fn part1() -> i64 {
         new_position
     });
 
-    let answer = visited.len() as i64;
+    let answer = visited.len().to_string();
 
     answer
 }
 
-pub fn part2() -> i64 {
+pub fn part2() -> String {
     let input = util::load_input(3);
 
     let mut visited = HashSet::new();
@@ -67,7 +67,7 @@ pub fn part2() -> i64 {
         new_position
     });
 
-    let answer = visited.len() as i64;
+    let answer = visited.len().to_string();
 
     answer
 }

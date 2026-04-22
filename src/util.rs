@@ -17,7 +17,7 @@ pub fn download_all_inputs() {
 
 pub enum Level {
     One,
-    Two
+    Two,
 }
 
 impl std::fmt::Display for Level {
@@ -39,7 +39,7 @@ pub fn download_input(day: i8) {
     if !fs::exists(INPUT_DIR).unwrap() {
         fs::create_dir(INPUT_DIR).unwrap();
     }
-    
+
     let mut output = OpenOptions::new()
         .write(true)
         .create(true)
@@ -58,18 +58,18 @@ pub fn download_input(day: i8) {
     write!(&mut output, "{res}").unwrap();
 }
 
-pub fn submit(day: u8, level: Level, answer: i64) {
+pub fn submit(day: u8, level: Level, answer: String) {
     let url = format!("{AOC_2015_BASE_URL}/day/{day}/answer");
     let token = get_token();
 
     let level = match level {
         Level::One => "1",
-        Level::Two => "2"
+        Level::Two => "2",
     };
-    let answer = answer.to_string();
     let form = [("level", level), ("answer", &answer)];
-    
-    let res = ureq::post(url).header("Cookie", format!("session={token}"))
+
+    let res = ureq::post(url)
+        .header("Cookie", format!("session={token}"))
         .send_form(form)
         .unwrap()
         .body_mut()

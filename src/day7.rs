@@ -4,7 +4,7 @@ use regex::Regex;
 
 use crate::util;
 
-pub fn solve(level: &util::Level) -> i64 {
+pub fn solve(level: &util::Level) -> String {
     match level {
         util::Level::One => part1(),
         util::Level::Two => part2(),
@@ -139,15 +139,15 @@ fn resolve_signal(
     }
 }
 
-pub fn part1() -> i64 {
+pub fn part1() -> String {
     let (mut wire_values, output_gates) = prepare_network();
 
     let answer = resolve_signal(&"a", &mut wire_values, &output_gates);
 
-    answer as i64
+    answer.to_string()
 }
 
-pub fn part2() -> i64 {
+pub fn part2() -> String {
     let (mut wire_values, output_gates) = prepare_network();
 
     let answer_1 = resolve_signal(&"a", &mut wire_values, &output_gates);
@@ -158,7 +158,7 @@ pub fn part2() -> i64 {
 
     let answer = resolve_signal(&"a", &mut wire_values, &output_gates);
 
-    answer as i64
+    answer.to_string()
 }
 
 fn prepare_network() -> (HashMap<String, Option<u16>>, HashMap<String, Gate>) {
