@@ -40,34 +40,40 @@ fn parse_sues(input: String) -> Vec<HashMap<String, u32>> {
         .collect()
 }
 
-pub fn part1() -> String {
-    let input = util::load_input(16);
-
-    let sues = parse_sues(input);
-
+fn parse_mfcsam() -> HashMap<String, u32> {
     let mut mfcsam: HashMap<String, u32> = HashMap::new();
     let pairs: Vec<(String, u32)> = MFCSAM
         .lines()
         .map(|l| {
             let parts: Vec<_> = l.split(": ").collect();
             (parts[0].to_string(), parts[1].parse().unwrap())
-        }).collect();
+        })
+        .collect();
 
     for p in pairs {
         mfcsam.insert(p.0, p.1);
     }
 
+    mfcsam
+}
+
+pub fn part1() -> String {
+    let input = util::load_input(16);
+
+    let sues = parse_sues(input);
+    let mfcsam = parse_mfcsam();
+
     let mut answer = 0;
 
     'outer: for (i, sue) in sues.iter().enumerate() {
-        for (k,v) in sue {
+        for (k, v) in sue {
             if mfcsam[k] != *v {
                 continue 'outer;
             }
         }
 
-        answer = i+1; // sues are 1-indexed >:(
-        break
+        answer = i + 1; // sues are 1-indexed >:(
+        break;
     }
 
     let answer = answer.to_string();
@@ -76,9 +82,40 @@ pub fn part1() -> String {
 }
 
 pub fn part2() -> String {
-    let _input = util::load_input(16);
+    let input = util::load_input(16);
 
-    let answer = String::new();
+    let sues = parse_sues(input);
+    let mfcsam = parse_mfcsam();
+
+    let mut answer = 0;
+
+    'outer: for (i, sue) in sues.into_iter().enumerate() {
+        for (k, v) in sue {
+            let m = mfcsam[&k];
+            match k.as_str() {
+                "cats" | "trees" => {
+                    if m >= v {
+                        continue 'outer;
+                    }
+                }
+                "pomeranians" | "goldfish" => {
+                    if m <= v {
+                        continue 'outer;
+                    }
+                }
+                _ => {
+                    if m != v {
+                        continue 'outer;
+                    }
+                }
+            }
+        }
+
+        answer = i + 1; // sues are 1-indexed >:(
+        break;
+    }
+
+    let answer = answer.to_string();
 
     answer
 }
