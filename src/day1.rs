@@ -34,7 +34,9 @@ pub fn part2() -> String {
             ')' => sum -= 1,
             _ => panic!("illegal character"),
         };
-        if sum < 0 {break};
+        if sum < 0 {
+            break;
+        };
     }
 
     answer.to_string()

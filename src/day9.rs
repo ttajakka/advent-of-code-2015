@@ -1,4 +1,7 @@
-use std::{collections::{HashMap, HashSet}, i64};
+use std::{
+    collections::{HashMap, HashSet},
+    i64,
+};
 
 use itertools::Itertools;
 use regex::Regex;
@@ -15,12 +18,14 @@ pub fn solve(level: &util::Level) -> String {
 pub fn part1() -> String {
     let (locations, distances) = prepare_distances();
 
-    let mut answer= i64::MAX;
+    let mut answer = i64::MAX;
 
     for p in locations.iter().permutations(locations.len()) {
         let mut length = 0;
-        for i in 0..p.len()-1 {
-            length += distances.get(&(p[i].to_string(), p[i+1].to_string())).unwrap()
+        for i in 0..p.len() - 1 {
+            length += distances
+                .get(&(p[i].to_string(), p[i + 1].to_string()))
+                .unwrap()
         }
 
         if length < answer {
@@ -34,12 +39,14 @@ pub fn part1() -> String {
 pub fn part2() -> String {
     let (locations, distances) = prepare_distances();
 
-    let mut answer= i64::MIN;
+    let mut answer = i64::MIN;
 
     for p in locations.iter().permutations(locations.len()) {
         let mut length = 0;
-        for i in 0..p.len()-1 {
-            length += distances.get(&(p[i].to_string(), p[i+1].to_string())).unwrap()
+        for i in 0..p.len() - 1 {
+            length += distances
+                .get(&(p[i].to_string(), p[i + 1].to_string()))
+                .unwrap()
         }
 
         if length > answer {
@@ -51,7 +58,7 @@ pub fn part2() -> String {
 }
 
 fn prepare_distances() -> (Vec<String>, HashMap<(String, String), i64>) {
-let input = util::load_input(9);
+    let input = util::load_input(9);
 
     let mut locations = HashSet::new();
     let mut distances: HashMap<(String, String), i64> = HashMap::new();

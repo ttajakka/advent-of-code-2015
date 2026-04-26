@@ -2,14 +2,6 @@ pub mod init;
 pub mod util;
 
 pub mod day1;
-pub mod day2;
-pub mod day3;
-pub mod day4;
-pub mod day5;
-pub mod day6;
-pub mod day7;
-pub mod day8;
-pub mod day9;
 pub mod day10;
 pub mod day11;
 pub mod day12;
@@ -20,16 +12,23 @@ pub mod day16;
 pub mod day17;
 pub mod day18;
 pub mod day19;
+pub mod day2;
 pub mod day20;
 pub mod day21;
 pub mod day22;
 pub mod day23;
 pub mod day24;
 pub mod day25;
+pub mod day3;
+pub mod day4;
+pub mod day5;
+pub mod day6;
+pub mod day7;
+pub mod day8;
+pub mod day9;
 
 pub fn solve(day: u8, level: util::Level, submit: bool) {
     let answer = match day {
-
         1 => day1::solve(&level),
         2 => day2::solve(&level),
         3 => day3::solve(&level),
@@ -55,7 +54,7 @@ pub fn solve(day: u8, level: util::Level, submit: bool) {
         23 => day23::solve(&level),
         24 => day24::solve(&level),
         25 => day25::solve(&level),
-        _ => todo!()
+        _ => todo!(),
     };
 
     println!("Solved day {day}, level {level} puzzle.");

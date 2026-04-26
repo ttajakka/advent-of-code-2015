@@ -154,7 +154,10 @@ pub fn part2() -> String {
 
     let (mut wire_values, mut output_gates) = prepare_network();
 
-    *output_gates.get_mut("b").unwrap() = Gate{ name: "b".to_string(), gate: GateType::Source(answer_1) };
+    *output_gates.get_mut("b").unwrap() = Gate {
+        name: "b".to_string(),
+        gate: GateType::Source(answer_1),
+    };
 
     let answer = resolve_signal(&"a", &mut wire_values, &output_gates);
 

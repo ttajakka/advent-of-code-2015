@@ -40,6 +40,6 @@ pub fn part2() -> String {
     }
 
     let answer = answer.to_string();
-    
+
     answer
 }

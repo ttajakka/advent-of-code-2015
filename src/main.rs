@@ -1,6 +1,6 @@
 use core::panic;
 
-use advent_of_code_2015::{solve, init, util};
+use advent_of_code_2015::{init, solve, util};
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
@@ -22,8 +22,8 @@ enum Command {
         first_day: u8,
         last_day: u8,
         #[arg(long)]
-        make_lib: bool
-    }
+        make_lib: bool,
+    },
 }
 
 fn main() {
@@ -38,7 +38,11 @@ fn main() {
             };
             solve(day, level, submit)
         }
-        Command::Init { first_day, last_day,make_lib} => {
+        Command::Init {
+            first_day,
+            last_day,
+            make_lib,
+        } => {
             if first_day < 1 {
                 panic!("first_day must be at least 1");
             }
